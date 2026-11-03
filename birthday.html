@@ -1,0 +1,427 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday Varshu ❤️</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ffb6c1, #ffc3a0);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 550px;
+            padding: 35px 25px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+            margin: 30px 0;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 35px;
+            text-shadow: 2px 2px 5px #ff4d79;
+        }
+
+        h2 {
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 15px 0;
+        }
+
+        button {
+            background: #ff2e63;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            background: #e91e63;
+        }
+
+        .cake {
+            font-size: 100px;
+            margin: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        #surprise {
+            display: none;
+            animation: fadeIn 2s;
+        }
+
+        #cakeGame {
+            margin-top: 20px;
+        }
+
+        #cakeEmoji {
+            font-size: 100px;
+            margin: 20px;
+            transition: 0.5s;
+        }
+
+        #gameMessage {
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            animation: float 6s linear forwards;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #fireworksCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media(max-width:480px) {
+
+            h1 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .cake {
+                font-size: 75px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <canvas id="fireworksCanvas"></canvas>
+
+    <div class="container">
+
+        <h1>🎉 Happy Birthday Varshu! 🎉</h1>
+
+        <div class="cake">🎂</div>
+
+        <p>
+            Today is a very special day because
+            someone amazing was born today. ❤️
+        </p>
+
+        <p>
+            Varshu, I have made a little surprise just for you!
+        </p>
+
+        <button onclick="openSurprise()">
+            Open Your Surprise 🎁
+        </button>
+
+        <div id="surprise">
+
+            <h2>💖 Dear Varshu 💖</h2>
+
+            <p>
+                Happy Birthday, Varshu! ❤️
+            </p>
+
+            <p>
+                Today is your special day, and I just want
+                to make you smile.
+            </p>
+
+            <p>
+                You are a beautiful part of my life,
+                and I hope your birthday brings you lots
+                of happiness, love, and unforgettable memories.
+            </p>
+
+            <p>
+                May all your dreams come true,
+                and may your smile always stay bright. ✨
+            </p>
+
+            <p>
+                You deserve all the happiness in the world. ❤️
+            </p>
+
+            <h2>Happy Birthday, Varshu! 🥰</h2>
+
+            <div class="cake">🎁💝🎂</div>
+
+        </div>
+
+        <hr style="margin:30px 0; border:1px solid #ffffff55;">
+
+        <h2>🎮 Birthday Games 🎮</h2>
+
+        <button onclick="startFireworks()">
+            🎆 Virtual Fireworks
+        </button>
+
+        <button onclick="cutCake()">
+            🎂 Cut The Cake
+        </button>
+
+        <div id="gameMessage"></div>
+
+        <div id="cakeGame">
+
+            <div id="cakeEmoji">🎂</div>
+
+            <button onclick="cutCake()">
+                🔪 Cut Cake
+            </button>
+
+        </div>
+
+        <div class="footer">
+            Made with ❤️ just for Varshu
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Birthday Surprise
+
+        function openSurprise() {
+
+            document.getElementById("surprise").style.display = "block";
+
+            createHearts();
+
+        }
+
+
+        // Floating Hearts
+
+        function createHearts() {
+
+            for (let i = 0; i < 30; i++) {
+
+                let heart = document.createElement("div");
+
+                heart.className = "heart";
+
+                heart.innerHTML = ["❤️", "💖", "💕", "💗", "💝"][
+                    Math.floor(Math.random() * 5)
+                ];
+
+                heart.style.left = Math.random() * 100 + "vw";
+
+                heart.style.animationDuration =
+                    (3 + Math.random() * 5) + "s";
+
+                heart.style.fontSize =
+                    (20 + Math.random() * 25) + "px";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 8000);
+
+            }
+
+        }
+
+
+        // Cake Cutting Game
+
+        let cakeCut = false;
+
+        function cutCake() {
+
+            let cake = document.getElementById("cakeEmoji");
+
+            let message = document.getElementById("gameMessage");
+
+            if (!cakeCut) {
+
+                cake.innerHTML = "🍰";
+
+                message.innerHTML =
+                    "Yay! Varshu cut the birthday cake! 🎂❤️";
+
+                cakeCut = true;
+
+                createHearts();
+
+            } else {
+
+                message.innerHTML =
+                    "Happy Birthday Varshu! 🎉";
+
+            }
+
+        }
+
+
+        // Virtual Fireworks
+
+        function startFireworks() {
+
+            const canvas = document.getElementById("fireworksCanvas");
+
+            const ctx = canvas.getContext("2d");
+
+            canvas.width = window.innerWidth;
+
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+
+            for (let i = 0; i < 150; i++) {
+
+                particles.push({
+
+                    x: Math.random() * canvas.width,
+
+                    y: Math.random() * canvas.height,
+
+                    size: Math.random() * 4 + 2,
+
+                    speedX: (Math.random() - 0.5) * 8,
+
+                    speedY: (Math.random() - 0.5) * 8,
+
+                    life: 100,
+
+                    color: `hsl(${Math.random() * 360}, 100%, 60%)`
+
+                });
+
+            }
+
+
+            function animate() {
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach((p) => {
+
+                    ctx.beginPath();
+
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+
+                    ctx.fillStyle = p.color;
+
+                    ctx.fill();
+
+                    p.x += p.speedX;
+
+                    p.y += p.speedY;
+
+                    p.life--;
+
+                });
+
+
+                particles = particles.filter(p => p.life > 0);
+
+
+                if (particles.length > 0) {
+
+                    requestAnimationFrame(animate);
+
+                } else {
+
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                }
+
+            }
+
+            animate();
+
+            document.getElementById("gameMessage").innerHTML =
+                "🎆 Happy Birthday Varshu! 🎆";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
